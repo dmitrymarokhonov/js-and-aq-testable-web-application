@@ -1,3 +1,3 @@
-export const formatDate = (date: Date) => (
-  `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`
-)
+export const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('default', { year: "numeric", month: "long", day: "numeric" }).format(date);
+};

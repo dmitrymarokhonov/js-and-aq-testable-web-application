@@ -1,30 +1,56 @@
-import React, { useState } from "react";
-
+import React, { useState, useCallback } from "react";
+import {
+  Typography,
+  Container,
+  Grid,
+  Button,
+} from "@mui/material";
 import { Movie } from "../components/Movie";
-import { initialMovies } from "../utils/movies";
+import { IMovie, initialMovies } from "../utils/movies";
+import AddMovie from "./AddMovie";
 
 export const MyMovies = () => {
   const [movies, setMovies] = useState(initialMovies);
+  const [isAddingMovie, setAddingMovie] = useState(false);
 
-  console.log(movies);
+  const openAddMovieDialog = useCallback(() => {
+    setAddingMovie(true);
+  }, []);
+
+  const closeAddMovieDialog = useCallback(() => {
+    setAddingMovie(false);
+  }, []);
+
+  const addNewMovie = (newMovie : IMovie) => {
+    setMovies([...movies, newMovie]);
+    closeAddMovieDialog();
+  };
 
   return (
-    <>
-      <h1>My Movies</h1>
-      {movies.map((movie, index) => {
-        const { releaseDate, name, imageUrl, userScore } = movie;
-        return (
-          <div key={`${name}-${index}`}>
-            <Movie
-              releaseDate={releaseDate}
-              name={name}
-              imageUrl={imageUrl}
-              userScore={userScore}
-            />
-          </div>
-        );
-      })}
-    </>
+    <Container>
+      <Typography variant="h3" gutterBottom>
+        My Movies
+      </Typography>
+      <Button variant="outlined" color="primary" onClick={openAddMovieDialog}>
+        Add Movie
+      </Button>
+      <Grid container spacing={2}>
+        {movies.map((movie, index) => {
+          const { releaseDate, name, review, userScore } = movie;
+          return (
+            <Grid item xs={12} sm={6} md={6} key={index}>
+              <Movie
+                releaseDate={releaseDate}
+                name={name}
+                review={review}
+                userScore={userScore}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+      <AddMovie open={isAddingMovie} onClose={closeAddMovieDialog} onSubmit={addNewMovie} />
+    </Container>
   );
 };
 
