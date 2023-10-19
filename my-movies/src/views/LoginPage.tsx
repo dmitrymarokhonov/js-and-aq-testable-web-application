@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const WelcomePage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,7 @@ const WelcomePage = () => {
     <Container maxWidth="sm">
       <Paper elevation={3} style={{ padding: "20px" }}>
         <Typography variant="h4" align="center" gutterBottom>
-          Welcome Page
+          Login Page
         </Typography>
         <TextField
           label="Username"
@@ -63,4 +63,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage;
+export default LoginPage;

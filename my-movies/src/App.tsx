@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import WelcomePage from './views/WelcomePage';
+import LoginPage from './views/LoginPage';
 import MyMovies from './views/MyMovies';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/movies" element={<MyMovies />}/>
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/" element={<LoginPage />} />
         </Routes>
     </BrowserRouter>
   );

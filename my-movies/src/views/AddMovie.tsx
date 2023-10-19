@@ -6,7 +6,13 @@ import {
   DialogActions,
   Button,
   TextField,
+  Rating,
+  Grid,
 } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import { IMovie } from "../utils/movies";
 
 interface AddMovieProps {
@@ -16,70 +22,105 @@ interface AddMovieProps {
 }
 
 const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
-  const [movieDetails, setMovieDetails] = useState({
+  const [movieDetails, setMovieDetails] = useState<IMovie>({
     name: "",
     releaseDate: new Date(),
     review: "",
-    userScore: 0.0,
+    userScore: 10.0,
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setMovieDetails({ ...movieDetails, [name]: value });
+    setMovieDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  const handleAddMovie = () => {
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      setMovieDetails((prevState) => ({
+        ...prevState,
+        releaseDate: date,
+      }));
+    }
+  };
+
+  const handleRatingChange = (event: ChangeEvent<{}>, value: number | null) => {
+    if (value !== null) {
+      setMovieDetails((prevState) => ({
+        ...prevState,
+        userScore: value,
+      }));
+    }
+  };
+
+  const handleAddMovie = (event: any) => {
+    event.preventDefault();
     onSubmit(movieDetails);
+    setMovieDetails({
+      name: "",
+      releaseDate: new Date(),
+      review: "",
+      userScore: 10.0,
+    });
   };
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <form>
+      <form onSubmit={handleAddMovie}>
         <DialogTitle>Add a Movie</DialogTitle>
         <DialogContent>
-          <TextField
-            label="Movie Name"
-            variant="outlined"
-            fullWidth
-            name="name"
-            value={movieDetails.name}
-            onChange={handleInputChange}
-          />
-          <div>
-            <label>Release date:</label>
-            <input
-              type="date"
-              name="releaseDate"
-              value={movieDetails.releaseDate.toISOString().slice(0, 10)}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <label>User Score:</label>
-            <input
-              type="number"
-              name="userScore"
-              step="0.1"
-              min="0"
-              max="10"
-              value={movieDetails.userScore}
-              onChange={handleInputChange}
-            />
-          </div>
-          <TextField
-            label="Review"
-            variant="outlined"
-            fullWidth
-            name="review"
-            value={movieDetails.review}
-            onChange={handleInputChange}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                label="Movie Name"
+                variant="outlined"
+                fullWidth
+                name="name"
+                value={movieDetails.name}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker label="Release Date" onChange={handleDateChange} />
+              </LocalizationProvider>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container alignItems="center">
+                <Rating
+                  name="userScore"
+                  value={movieDetails.userScore}
+                  onChange={handleRatingChange}
+                  precision={0.5}
+                  max={10}
+                  size="large"
+                />
+                {movieDetails.userScore !== null && (
+                  <span style={{ margin: "8px" }}>
+                    {movieDetails.userScore + "/10"}
+                  </span>
+                )}
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Review"
+                variant="outlined"
+                fullWidth
+                name="review"
+                value={movieDetails.review}
+                onChange={handleInputChange}
+              />
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleAddMovie} color="primary">
+          <Button type="submit" color="primary">
             Add
           </Button>
         </DialogActions>
