@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent, Rating, Typography } from "@mui/material";
 import { IMovie } from "../utils/movies";
 import { formatDate } from "../utils/utils";
