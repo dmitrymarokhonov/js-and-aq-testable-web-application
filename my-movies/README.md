@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# My Movies React app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Go to the project folder and run `npm start`
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+TODO: Comment away onSubmit from the props interface in AddMovie?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Assignment 1:
+Open AddMovie Dialog when the "Add Movie" -button is pressed, and close if the "Cancel" -button is clicked.
 
-### `npm run build`
+Step 1. Import AddMovie and useState to MyMovies.tsx.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Step 2. Create a state variable isAddingMovie using the useState hook. Initialize it with false.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Step 3. Add the onClick property to the "Add Movie" -button, which will set the value of the isAddingMovie to true. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Step 4. Include the AddMovie component at the bottom of the MyMovies component's return section. Pass the following props to AddMovie:
+ - open: isAddingMovie state.
+ - onClose: () => setAddingMovie(false). Or create a separate hadleClose function for this.
 
-### `npm run eject`
+Step 5. Add open and onClose props on AddMovie.tsx, and give these as props to the Dialog component. Give Cancel button onClick property "onClose".
+ 
+## Assignment 2:
+Update movies when submit is pressed, and close dialog
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Step 1. Create a new state variable called movies using the useState hook. Initialize it with initialMovies. Update the map function to use the movies state instead of initialMovies.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Step 2. Implement a function addNewMovie that takes a new movie object as an argument. Inside the function, use the setMovies function to update the movies state. Append the new movie to the existing list of movies.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Step 3. Give AddMovie the addNewMovie as a prop called onSubmit.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Assignment 3:
+Create a form that users can send movies.
