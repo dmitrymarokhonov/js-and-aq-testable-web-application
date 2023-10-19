@@ -1,11 +1,19 @@
+import React, { useState } from "react";
 import { Typography, Container, Grid, Button } from "@mui/material";
 import { Movie } from "../components/Movie";
 import { IMovie, initialMovies } from "../utils/movies";
-
+import AddMovie from "./AddMovie";
 import { useNavigate } from "react-router-dom";
 
 export const MyMovies = () => {
   const navigate = useNavigate();
+  const [movies, setMovies] = useState(initialMovies);
+  const [isAddingMovie, setAddingMovie] = useState(false);
+
+  const addNewMovie = (newMovie: IMovie) => {
+    setMovies([...movies, newMovie]);
+    setAddingMovie(false);
+  };
 
   const logout = () => {
     navigate("/");
@@ -26,11 +34,15 @@ export const MyMovies = () => {
       <Typography variant="h3" gutterBottom>
         My Movies
       </Typography>
-      <Button variant="outlined" color="primary">
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => setAddingMovie(true)}
+      >
         Add Movie
       </Button>
       <Grid container spacing={2}>
-        {initialMovies.map((movie: IMovie, index) => {
+        {movies.map((movie, index) => {
           const { releaseDate, name, review, userScore } = movie;
           return (
             <Grid item xs={12} sm={6} md={6} key={index}>
@@ -44,6 +56,11 @@ export const MyMovies = () => {
           );
         })}
       </Grid>
+      <AddMovie
+        open={isAddingMovie}
+        onClose={() => setAddingMovie(false)}
+        onSubmit={addNewMovie}
+      />
     </Container>
   );
 };
