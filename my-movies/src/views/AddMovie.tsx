@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useCallback } from "react";
+import React, { useState, ChangeEvent } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -7,17 +7,18 @@ import {
   Button,
   TextField,
 } from "@mui/material";
+import { IMovie } from "../utils/movies";
 
 interface AddMovieProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: (newMovie: any) => void; // Change 'any' to the actual type of your movie data
+  onSubmit: (newMovie: IMovie) => void;
 }
 
 const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
   const [movieDetails, setMovieDetails] = useState({
     name: "",
-    releaseDate: new Date().toISOString().slice(0, 10),
+    releaseDate: new Date(),
     review: "",
     userScore: 0.0,
   });
@@ -28,7 +29,6 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
   };
 
   const handleAddMovie = () => {
-    // You can add validation logic here if needed
     onSubmit(movieDetails);
   };
 
@@ -50,7 +50,7 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
             <input
               type="date"
               name="releaseDate"
-              value={movieDetails.releaseDate}
+              value={movieDetails.releaseDate.toISOString().slice(0, 10)}
               onChange={handleInputChange}
             />
           </div>
