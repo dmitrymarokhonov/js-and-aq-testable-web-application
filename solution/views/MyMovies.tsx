@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { Typography, Container, Grid, Button } from "@mui/material";
 import { Movie } from "../components/Movie";
 import { IMovie, initialMovies } from "../utils/movies";
-
+import AddMovie from "./AddMovie";
 import { useNavigate } from "react-router-dom";
 
 export const MyMovies = () => {
   const navigate = useNavigate();
   const [movies, setMovies] = useState(initialMovies);
+  const [isAddingMovie, setAddingMovie] = useState(false);
 
+  const addNewMovie = (newMovie: IMovie) => {
+    setMovies([...movies, newMovie]);
+    setAddingMovie(false);
+  };
 
   const logout = () => {
     navigate("/");
@@ -32,6 +37,7 @@ export const MyMovies = () => {
       <Button
         variant="outlined"
         color="primary"
+        onClick={() => setAddingMovie(true)}
       >
         Add Movie
       </Button>
@@ -50,7 +56,11 @@ export const MyMovies = () => {
           );
         })}
       </Grid>
-
+      <AddMovie
+        open={isAddingMovie}
+        onClose={() => setAddingMovie(false)}
+        onSubmit={addNewMovie}
+      />
     </Container>
   );
 };
