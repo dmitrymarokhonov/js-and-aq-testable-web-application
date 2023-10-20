@@ -10,6 +10,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+# Exercises
+- [First steps](#first-steps)
+- [Assignment 1: Opening AddMovie Dialog](#assignment-1)
+- [Assignment 2: Updating Movies](#assignment-2)
+- [Assignment 3: Creating the Movie Submission Form](#assignment)
+- [Extra React Assignments](#extra-react-assignments)
+
 ## First steps
 We have implemented a fake login page. Credentials are hardcoded in the LoginPage.tsx.
 
