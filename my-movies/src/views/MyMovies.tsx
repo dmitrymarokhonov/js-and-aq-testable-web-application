@@ -1,15 +1,14 @@
 import { Typography, Container, Grid, Button } from "@mui/material";
 import { Movie } from "../components/Movie";
 import { IMovie, initialMovies } from "../utils/movies";
-
 import { useNavigate } from "react-router-dom";
 
 export const MyMovies = () => {
   const navigate = useNavigate();
-
   const logout = () => {
     navigate("/");
   };
+
 
   return (
     <Container>
@@ -26,7 +25,10 @@ export const MyMovies = () => {
       <Typography variant="h3" gutterBottom>
         My Movies
       </Typography>
-      <Button variant="outlined" color="primary">
+      <Button
+        variant="outlined"
+        color="primary"
+      >
         Add Movie
       </Button>
       <Grid container spacing={2}>

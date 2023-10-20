@@ -2,17 +2,15 @@ import React, { useState, ChangeEvent } from "react";
 import {
   Dialog,
   DialogTitle,
-  DialogContent,
   DialogActions,
   Button,
+  DialogContent,
+  Grid,
   TextField,
   Rating,
-  Grid,
 } from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
+import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { IMovie } from "../utils/movies";
 
 interface AddMovieProps {
@@ -21,7 +19,11 @@ interface AddMovieProps {
   onSubmit: (newMovie: IMovie) => void;
 }
 
-const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
+const AddMovie: React.FC<AddMovieProps> = ({
+  open,
+  onClose,
+  onSubmit,
+}: AddMovieProps) => {
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     name: "",
     releaseDate: new Date(),
@@ -55,9 +57,10 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
     }
   };
 
-  const handleAddMovie = (event: any) => {
+  const handleAddMovie = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSubmit(movieDetails);
+    onClose();
     setMovieDetails({
       name: "",
       releaseDate: new Date(),
@@ -71,15 +74,14 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
       <form onSubmit={handleAddMovie}>
         <DialogTitle>Add a Movie</DialogTitle>
         <DialogContent>
-          <Grid container spacing={2}>
+          <Grid container spacing={4} sx={{ paddingTop: "8px" }}>
             <Grid item xs={12}>
               <TextField
-                label="Movie Name"
-                variant="outlined"
-                fullWidth
-                name="name"
+                label="Movie name"
                 value={movieDetails.name}
                 onChange={handleInputChange}
+                name="name"
+                fullWidth
               />
             </Grid>
             <Grid item xs={12}>
@@ -97,17 +99,14 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
                   max={10}
                   size="large"
                 />
-                {movieDetails.userScore !== null && (
-                  <span style={{ margin: "8px" }}>
-                    {movieDetails.userScore + "/10"}
-                  </span>
-                )}
+                <span style={{ margin: "8px" }}>
+                  {movieDetails.userScore + "/10"}
+                </span>
               </Grid>
             </Grid>
             <Grid item xs={12}>
               <TextField
                 label="Review"
-                variant="outlined"
                 fullWidth
                 name="review"
                 value={movieDetails.review}
@@ -117,7 +116,7 @@ const AddMovie: React.FC<AddMovieProps> = ({ open, onClose, onSubmit }) => {
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="primary">
+          <Button color="primary" onClick={onClose}>
             Cancel
           </Button>
           <Button type="submit" color="primary">
