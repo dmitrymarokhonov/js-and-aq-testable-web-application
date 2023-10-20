@@ -1,6 +1,9 @@
 # My Movies React app
 
-Go to the project folder and run `npm start`
+Go to the project folder and run 
+`npm install typescript`
+and then
+`npm start`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
