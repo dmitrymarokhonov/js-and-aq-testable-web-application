@@ -12,22 +12,11 @@ We have implemented a fake login page. Credentials are hardcoded in the LoginPag
 
 Can you find them? Try to change them, and log in.
 
-# TODO: 
-Comment away onSubmit from the props interface in AddMovie
-rename Dialogs isOpen state -> dialogIsOpen
-remove movieDetails
-Add <DialogContent> and Grids 
-remove variant from movie name and review textfield
-Grid container spacing={4} sx={{paddingTop:"8px"}}
-Update the handleRatingChange in assignments (correct one in solutions)
-remove the movieDetails.userScore !== null for the span
-Add onClose to the handleSubmit
-
 
 ## Assignment 1:
 Open AddMovie Dialog when the "Add Movie" -button is pressed, and close if the "Cancel" -button or area outside of the dialog is clicked.
 
-Step 1. Import AddMovie and useState to MyMovies.tsx.
+Step 1. Import AddMovie and useState to MyMovies.tsx. Remember to add all necessary imports in other steps too.
 
 Step 2. Create a state variable dialogIsOpen using the useState hook. Initialize it with false.
 
@@ -37,7 +26,7 @@ Step 4. Include the AddMovie component at the bottom of the MyMovies component's
  - open: dialogIsOpen state.
  - onClose: () => setDialogIsopen(false). Or create a separate handleClose function for this.
 
-Step 5. Add open and onClose props on AddMovie.tsx, and give these as props to the Dialog component's properties with the same names. Give Cancel button onClick property "onClose".
+Step 5. In AddMovie.tsx give open and onClose props to the Dialog component's properties with the same names. Give Cancel button onClick property "onClose".
  
 Step 6. Now check that everything works.
 
@@ -50,7 +39,7 @@ Step 2. Implement a function addNewMovie that takes a new movie: IMovie object a
 
 Step 3. Give the addNewMovie as a prop called onSubmit to the AddMovie component. Remove //in front of the onSubmit in the AddMovieProps in the AddMovie.tsx. Add this as a prop to the AddMovie in the AddMovie.tsx.
 
-Step 4. Create state variable movieDetails with initial state:
+Step 4. Set initial state for the movieDetails:
 ```
 {
  name: "My movie",
@@ -59,6 +48,7 @@ Step 4. Create state variable movieDetails with initial state:
  userScore: 10.0,
 }
 ```
+Set the type of the state to be IMovie.
 
 Step 5. Create handleAddMovie that takes event: React.FormEvent<HTMLFormElement>. Call event.preventDefault() and then onSubmit(movieDetails). At last call onClose, so that the dialog closes after submission. 
 
