@@ -6,7 +6,9 @@ import {
   Button,
   DialogContent,
   Grid,
+  TextField,
 } from "@mui/material";
+import { IMovie } from "../utils/movies";
 
 interface AddMovieProps {
   open: boolean;
@@ -18,7 +20,12 @@ const AddMovie: React.FC<AddMovieProps> = ({
   open,
   onClose,
 }: AddMovieProps) => {
-  const [movieDetails, setMovieDetails] = useState({});
+  const [movieDetails, setMovieDetails] = useState<IMovie>({
+    name: "",
+    releaseDate: new Date(),
+    review: "",
+    userScore: 10.0,
+  });
 
   //Handle input change functions are given here to spare some time
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +61,13 @@ const AddMovie: React.FC<AddMovieProps> = ({
         <DialogContent>
           <Grid container spacing={4} sx={{ paddingTop: "8px" }}>
             <Grid item xs={12}>
-              {/* Movie Name */}
+              <TextField
+                label="Movie name"
+                value={movieDetails.name}
+                onChange={handleInputChange}
+                name="name"
+                fullWidth
+              />
             </Grid>
             <Grid item xs={12}>
               {/* Date Picker for Realese Date */}
@@ -65,14 +78,12 @@ const AddMovie: React.FC<AddMovieProps> = ({
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              {/* Movie Review */}
+              {/* Movie Review */}c
             </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" >
-            Cancel
-          </Button>
+          <Button color="primary">Cancel</Button>
           <Button type="submit" color="primary">
             Add
           </Button>
