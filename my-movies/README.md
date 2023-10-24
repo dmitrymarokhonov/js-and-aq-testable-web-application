@@ -176,8 +176,8 @@ project root folder:
    ```
 
 ## Create tests
-Take exmaple from the login robot, and create new tests for the functinalities created in the previous assignments.
+Take an example from the login robot, and create new tests for the functionalities created in the previous assignments.
 
-- Create a test to check that after the "Add Movie" button is clicked, a dialog box will be open.
-- Create a test that verifies that after submitting the movie form, the new movie is displayed in the "My Movies" page with correct data.
-- If you did the Extra React assignments, create tests for those too. 
+- Create a test to check that a dialog box will open after the "Add Movie" button is clicked.
+- Create a test that verifies that after submitting the movie form, the new movie is displayed on the "My Movies" page with the correct data.
+- If you did the Extra React assignments, create tests for those too.
