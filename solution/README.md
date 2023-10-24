@@ -8,7 +8,7 @@
 ### virtualenv
 
 It is recommended that you create virtualenv (=separate python environment just for this project) for running tests. 
-But this is mandatory. You can create virtualenv on project root folder with following command:
+But this is not mandatory. You can create virtualenv on project root folder with following command:
 
   ```shell
   python -m venv venv
