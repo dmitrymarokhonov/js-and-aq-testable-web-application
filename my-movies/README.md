@@ -1,9 +1,10 @@
 # My Movies React app
 
 Go to the project folder and run 
-`npm install typescript`
+```npm install```
+```npm install @mui/material @emotion/react @emotion/styled```
 and then
-`npm start`
+```npm start```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
