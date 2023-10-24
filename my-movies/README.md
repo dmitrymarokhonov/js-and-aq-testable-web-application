@@ -15,16 +15,18 @@
 
 **Exercises**
 - [First steps](#first-steps)
-- [Assignment 1: Opening AddMovie Dialog](#assignment-1-opening-addmovie-dialog)
-- [Assignment 2: Updating Movies](#assignment-2-updating-movies)
-- [Assignment 3: Creating the Movie Submission Form](#assignment-3-creating-the-movie-submission-form)
+- [React Assignment 1: Opening AddMovie Dialog](#react-assignment-1-opening-addmovie-dialog)
+- [React Assignment 2: Updating Movies](#react-assignment-2-updating-movies)
+- [React Assignment 3: Creating the Movie Submission Form](#react-assignment-3-creating-the-movie-submission-form)
 - [Extra React Assignments](#extra-react-assignments)
+- [Testing part](#testing-part)
+- [Create tests](#create-tests)
 
 ## First steps
 We have implemented a fake login page. Credentials are hardcoded in `LoginPage.tsx`. You can find them and try changing them to log in.
 
 
-## Assignment 1: Opening AddMovie Dialog
+## React Assignment 1: Opening AddMovie Dialog
 
 **Step 1**
 
@@ -52,7 +54,7 @@ In `AddMovie.tsx`, give `open` and `onClose` props to the `Dialog` component's p
 
 Check that everything works.
 
-## Assignment 2: Updating Movies
+## React Assignment 2: Updating Movies
 
 **Step 1**
 
@@ -78,7 +80,7 @@ Add an `onSubmit` property for the `form`, it should call `handleAddMovie`.
 
 Check that clicking the "Add" button now adds a new movie to the My Movies page.
 
-## Assignment 3: Creating the Movie Submission Form
+## React Assignment 3: Creating the Movie Submission Form
 
 **Step 1**
 
@@ -128,3 +130,54 @@ Inside the last `Grid item xs={12}`, add another `TextField` for Reviews. Refer 
 - Add remove button to movies [Example](https://react.dev/learn/updating-arrays-in-state#removing-from-an-array)
 - Add validation that the name of the movie cannot be an empty string.
 - The user should not be able to add movies with the same name.
+
+
+## Testing part
+**Setting up test environment**
+
+   You need have at least python version: 3.6 installed to your machine to run robot test. For browser automation test 
+   you need Chrome browser and corresponding Chromedriver installed in your PATH. Chromedriver can be
+   downloaded from: https://chromedriver.chromium.org. Unzip downloaded chromedriver.exe to somewhere your PATH 
+   (project root folder is fine if your run your tests there). 
+   
+**virtualenv**
+
+It is recommended that you create virtualenv (=separate python environment just for this project) for running tests. 
+But this is not mandatory. You can create virtualenv on project root folder with following command:
+
+  ```shell
+  python -m venv venv
+  ```
+
+This will create virtualenv named: `venv` to you. Activate virtualenv in Windows with command:
+
+   ```shell
+   .\venv\Scripts\activate
+   ```
+
+In linux etc. activation happens with command:
+   ```shell
+   ./venv/bin/activate
+   ```
+
+**Installing python requirements**
+
+Whether you created virtualenv or not, installing project python requirements happens in project root folder with command:
+   ```shell
+   pip install -r requirements.txt
+   ```
+
+**Running test**
+
+To test that everything is working: First ensure that My movies application is running. Then run following command in
+project root folder:
+   ```shell
+   robot .\solution\tests\login.robot
+   ```
+
+## Create tests
+Take exmaple from the login robot, and create new tests for the functinalities created in the previous assignments.
+
+- Create a test to check that after the "Add Movie" button is clicked, a dialog box will be open.
+- Create a test that verifies that after submitting the movie form, the new movie is displayed in the "My Movies" page with correct data.
+- If you did the Extra React assignments, create tests for those too. 
