@@ -13,6 +13,8 @@ export const MyMovies = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [movies, setMovies] = useState(initialMovies);
 
+  const addNewMovie = (movie: IMovie) => setMovies([...initialMovies, movie]);
+
   return (
     <Container>
       <div style={{ position: "relative" }}>
@@ -50,7 +52,11 @@ export const MyMovies = () => {
           );
         })}
       </Grid>
-      <AddMovie open={dialogIsOpen} onClose={() => setDialogIsOpen(false)} />
+      <AddMovie
+        open={dialogIsOpen}
+        onClose={() => setDialogIsOpen(false)}
+        onSubmit={addNewMovie}
+      />
     </Container>
   );
 };

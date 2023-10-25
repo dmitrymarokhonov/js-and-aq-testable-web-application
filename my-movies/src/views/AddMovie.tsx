@@ -13,12 +13,13 @@ import { IMovie } from "../utils/movies";
 interface AddMovieProps {
   open: boolean;
   onClose: () => void;
-  //onSubmit: (newMovie: IMovie) => void;
+  onSubmit: (newMovie: IMovie) => void;
 }
 
 const AddMovie: React.FC<AddMovieProps> = ({
   open,
   onClose,
+  onSubmit,
 }: AddMovieProps) => {
   const [movieDetails, setMovieDetails] = useState<IMovie>({
     name: "",
@@ -35,7 +36,17 @@ const AddMovie: React.FC<AddMovieProps> = ({
       [name]: value,
     }));
   };
-
+  const handleAddMovie = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit(movieDetails);
+    setMovieDetails({
+      name: "",
+      releaseDate: new Date(),
+      review: "",
+      userScore: 10.0,
+    });
+    onClose();
+  };
   const handleDateChange = (date: Date | null) => {
     if (date) {
       setMovieDetails((prevState) => ({
@@ -56,7 +67,7 @@ const AddMovie: React.FC<AddMovieProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <form>
+      <form onSubmit={handleAddMovie}>
         <DialogTitle>Add a Movie</DialogTitle>
         <DialogContent>
           <Grid container spacing={4} sx={{ paddingTop: "8px" }}>
