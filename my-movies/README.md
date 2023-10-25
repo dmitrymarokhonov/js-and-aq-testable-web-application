@@ -136,8 +136,8 @@ Inside the last `Grid item xs={12}`, add another `TextField` for Reviews. Refer 
 **Setting up test environment**
 
    You need have at least python version: 3.6 installed to your machine to run robot test. For browser automation test 
-   you need Chrome browser and corresponding Chromedriver installed in your PATH. Chromedriver can be
-   downloaded from: https://chromedriver.chromium.org. Unzip downloaded chromedriver.exe to somewhere your PATH 
+   you need firefox browser and corresponding geckodriver executable installed in your PATH. Geckodriver can be
+   downloaded from: https://github.com/mozilla/geckodriver/releases Unzip downloaded geckodriver executable to somewhere your PATH 
    (project root folder is fine if your run your tests there). 
    
 **virtualenv**

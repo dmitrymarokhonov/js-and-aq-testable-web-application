@@ -5,7 +5,7 @@ Test Setup        Login Setup
 Test Teardown     Close Browser
 
 *** Variables ***
-${BROWSER}       chrome
+${BROWSER}       firefox
 ${APP_ADRESS}    http://localhost:3000/
 ${USERNAME}      Username
 ${PASSWORD}      password
