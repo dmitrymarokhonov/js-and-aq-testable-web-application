@@ -7,8 +7,11 @@ import {
   DialogContent,
   Grid,
   TextField,
+  Rating,
 } from "@mui/material";
 import { IMovie } from "../utils/movies";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 interface AddMovieProps {
   open: boolean;
@@ -81,15 +84,33 @@ const AddMovie: React.FC<AddMovieProps> = ({
               />
             </Grid>
             <Grid item xs={12}>
-              {/* Date Picker for Realese Date */}
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker label="Release Date" onChange={handleDateChange} />
+              </LocalizationProvider>
             </Grid>
             <Grid item xs={12}>
               <Grid container alignItems="center">
-                {/* Movie Rating */}
+                <Rating
+                  name="userScore"
+                  value={movieDetails.userScore}
+                  onChange={handleRatingChange}
+                  precision={0.5}
+                  max={10}
+                  size="large"
+                />
+                <span style={{ margin: "8px" }}>
+                  {movieDetails.userScore + "/10"}
+                </span>
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              {/* Movie Review */}c
+              <TextField
+                label="Review"
+                fullWidth
+                name="Review"
+                value={movieDetails.review}
+                onChange={handleInputChange}
+              />
             </Grid>
           </Grid>
         </DialogContent>
