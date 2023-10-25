@@ -55,7 +55,7 @@ const AddMovie: React.FC<AddMovieProps> = ({
   };
 
   return (
-    <Dialog open={false}>
+    <Dialog open={open} onClose={onClose}>
       <form>
         <DialogTitle>Add a Movie</DialogTitle>
         <DialogContent>
