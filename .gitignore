@@ -1,7 +1,8 @@
 node_modules/
-venv/
+venv01/
 .idea/
 log.html
 output.xml
 report.html
 selenium-screenshot-*.png
+geckodriver-*.log
