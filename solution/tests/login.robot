@@ -7,4 +7,9 @@ Resource          movie.resource
 *** Test Cases ***
 Login to My Movies Application
     Login Setup
+    Login
 
+Check Dialog for adding movie
+    Login Setup
+    Check the Dialog
+    Add Movie

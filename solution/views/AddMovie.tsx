@@ -33,6 +33,7 @@ const AddMovie: React.FC<AddMovieProps> = ({
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(value);
     setMovieDetails((prevState) => ({
       ...prevState,
       [name]: value,

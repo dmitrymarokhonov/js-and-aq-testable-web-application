@@ -105,9 +105,9 @@ const AddMovie: React.FC<AddMovieProps> = ({
             </Grid>
             <Grid item xs={12}>
               <TextField
-                label="Review"
+                label="review"
                 fullWidth
-                name="Review"
+                name="review"
                 value={movieDetails.review}
                 onChange={handleInputChange}
               />
@@ -115,7 +115,7 @@ const AddMovie: React.FC<AddMovieProps> = ({
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button color="primary">Cancel</Button>
+          <Button onClick={onClose} color="primary">Cancel</Button>
           <Button type="submit" color="primary">
             Add
           </Button>
